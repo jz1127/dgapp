@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Delta Green App Prototype</title>
+<meta name="description" content="">
+<meta name="author" content="JP">
+<!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<body ng-app="dgApp" ng-init="hello = 'Hello'; name = 'Delta Green!';" ng-controller="homeCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        {{ hello }} {{name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col-sm">Name</th>
+                                <th scope="col-sm">Occ</th>
+                                <th scope="col-sm">H</th>
+                                <th scope="col-sm">San</th>
+                                <th scope="col-sm">Update</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="char in characters">
+                                <td>
+                                    <div class="input-group input-group-sm mb-3">
+                                            <input class="form-control" ng-model="char.name" aria-label="Default" aria-describedby="input-sizing-default">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" ng-model="char.occupation"  aria-label="Default" aria-describedby="input-sizing-default">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" ng-model="char.hp"  aria-label="Default" aria-describedby="input-sizing-default">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input class="form-control" ng-model="char.sanity"  aria-label="Default" aria-describedby="input-sizing-default">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group-prepend">
+                                        <button ng-click="changeVal(char)" class="btn btn-outline-secondary" type="button" id="button-addon1">update</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('dgApp', []);
+
+        app.controller('homeCtrl', function($scope){
+            $scope.characters = [
+                {name: "Crocker", occupation: "PHD", hp: 27, sanity: 39},
+                {name: "Frank", occupation: "unemployed", hp: 37, sanity: 15},
+                {name: "Jet", occupation: "US Navy", hp: 47, sanity: 19},
+                {name: "Sydney", occupation: "PHD Behavioral Profiler", hp: 23, sanity: 50},
+                {name: "Victor", occupation: "CPA", hp: 56, sanity: 45}
+            ];
+            $scope.changeVal = function(row) {
+                console.log(row);
+                // $scope.characters.forEach(({ name, occupation }) => console.log(`${name} ${occupation}`));
+
+                $scope.characters.find((o, i) => {
+                if (o.name === row.name) {
+                    $scope.characters[i] = { name: row.name, occupation: row.occupation, hp: row.hp, sanity: row.sanity };
+                    return true; // stop searching
+                }
+    });
+            
+            }
+        });
+    </script>
+
+</body>
+</html>
