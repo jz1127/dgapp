@@ -26,7 +26,7 @@ refresh();
         $scope.characters.find((o, i) => {
             if (o.name === row.name) {
                 $scope.characters[i] = { name: o.name, occupation: o.occupation, hp: row.hp, str: row.str, dex: row.dex, con: row.con };
-                return true;
+                return true;    
             }
         });
     }
@@ -55,4 +55,17 @@ refresh();
            });
     }
 
+    $scope.updateChar = function(id) {
+        // console.log(id);
+        function result(char) {
+            return char._id == id;
+        }
+        console.log($scope.characters.find(result => result._id == id));
+        $http.put('/characters/' + id, $scope.characters.find(result => result._id == id)).then(function(response){
+            console.log("This is response: " + JSON.stringify(response));
+            refresh();
+        },function(response){
+            console.log('no response given');
+        });
+    }
 });
