@@ -27,7 +27,7 @@
                 </a>
         </div>
   
-        <h5 class="indigo-text h5 mb-4">Photography</h5>
+        <h5 class="indigo-text h5 mb-4">Victor</h5>
   
         <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
   
@@ -39,6 +39,15 @@
         <a class="fa-lg p-2 m-2 fb-ic"><i class="fab fa-facebook-f grey-text"></i></a>
     </div>
     <!-- Jumbotron -->
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Skill</span>
+        </div>
+        <input type="text" class="form-control" ng-model="skill" aria-label="Default" aria-describedby="input-sizing-default">
+        <button style="margin: auto;" ng-click="testSkill()" class="btn btn-primary" type="button" id="button-addon1">Add Character</button>
+    </div>
+
+
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -129,7 +138,7 @@
                                     <td></td>
                                     <td>
                                         <div class="input-group" style="text-align: center;">
-                                            <button style="margin: auto;" ng-click="addCharacter()" class="btn btn-primary" type="button" id="button-addon1">Add Contact</button>
+                                            <button style="margin: auto;" ng-click="addCharacter()" class="btn btn-primary" type="button" id="button-addon1">Add Character</button>
                                         </div>
                                     </td>
                                     <td></td>

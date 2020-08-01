@@ -68,4 +68,17 @@ refresh();
             console.log('no response given');
         });
     }
+
+    $scope.testSkill = function() {
+        alert(setSkillValue($scope.skill));
+    }
+
+    getSkillValue = function(key) {
+        return $scope.key;
+    }
+
+    setSkillValue = function($val) {
+        return $val * 5;
+    }
+
 });

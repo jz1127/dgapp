@@ -2,5 +2,8 @@
     /* background-color: green; */
 }
 body {
-    background-color:  rgb(50, 100, 50);
+    background-color:  rgb(0, 0, 0);
+}
+.jumbotron {
+    background-color: rgb(78, 119, 78);
 }

@@ -7,7 +7,7 @@ var mongojs = require('mongojs');
 // const { request } = require('express');
 var db = mongojs('characters', ['characters']);
 var bodyParser = require('body-parser');
-
+var path = require('path');
 var sortByProperty = function (property) {
     return function (x, y) {
         return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? -1 : 1));
@@ -16,6 +16,10 @@ var sortByProperty = function (property) {
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
+
+app.get('/test', function(req, res){
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 app.get('/look', function(req, res) { 
     res.send("Hello World!"); 
