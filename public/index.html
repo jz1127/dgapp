@@ -8,8 +8,14 @@
 <meta name="author" content="JP">
 <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- <script src="lib/angular-ui-router.js"></script> -->
+<script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+<!-- <script src="js/appbody.js"></script> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dgtheme.css" >
+<style>
+    .active { color: red; font-weight: bolder; }
+</style>
 </head>
 <body ng-app="dgApp" ng-init="hello = 'Hello'; name = 'Delta Green!';" ng-controller="homeCtrl">
     <div class="container-fluid">
@@ -25,199 +31,37 @@
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
+            </div>
+  
+            <h5 class="indigo-text h5 mb-4">Victor</h5>
+  
+            <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+  
+            <!-- Linkedin -->
+            <a class="fa-lg p-2 m-2 li-ic"><i class="fab fa-linkedin-in grey-text"></i></a>
+            <!-- Twitter -->
+            <a class="fa-lg p-2 m-2 tw-ic"><i class="fab fa-twitter grey-text"></i></a>
+            <!-- Dribbble -->
+            <a class="fa-lg p-2 m-2 fb-ic"><i class="fab fa-facebook-f grey-text"></i></a>
         </div>
-  
-        <h5 class="indigo-text h5 mb-4">Victor</h5>
-  
-        <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-  
-        <!-- Linkedin -->
-        <a class="fa-lg p-2 m-2 li-ic"><i class="fab fa-linkedin-in grey-text"></i></a>
-        <!-- Twitter -->
-        <a class="fa-lg p-2 m-2 tw-ic"><i class="fab fa-twitter grey-text"></i></a>
-        <!-- Dribbble -->
-        <a class="fa-lg p-2 m-2 fb-ic"><i class="fab fa-facebook-f grey-text"></i></a>
-    </div>
-    <!-- Jumbotron -->
-    <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Skill</span>
-        </div>
-        <input type="text" class="form-control" ng-model="skill" aria-label="Default" aria-describedby="input-sizing-default">
-        <button style="margin: auto;" ng-click="testSkill()" class="btn btn-primary" type="button" id="button-addon1">Add Character</button>
-    </div>
-
-
+        <!-- Jumbotron -->
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        {{ hello }} {{name}}
+                        <a ui-sref="hello" ui-sref-active="active">Hello</a>
+                        <a ui-sref="about" ui-sref-active="active">About</a>
+                        <a ui-sref="admin" ui-sref-active="active">Admin</a>
+                        
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Add Character</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Character Name</span>
-                                            </div>
-                                            <input type="text" class="form-control" ng-model="newChar.name" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Occupation</span>
-                                            </div>
-                                            <input type="text" class="form-control" ng-model="newChar.occupation" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">HP</span>
-                                            </div>
-                                            <input type="number" class="form-control" ng-model="newChar.hp" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Sanity</span>
-                                            </div>
-                                            <input type="number" class="form-control" ng-model="newChar.sanity" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">STR</span>
-                                            </div>
-                                            <input type="number"  class="form-control" ng-model="newChar.str" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">DEX</span>
-                                            </div>
-                                            <input type="number" class="form-control" ng-model="newChar.dex" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">CON</span>
-                                            </div>
-                                            <input type="number" class="form-control" ng-model="newChar.con" aria-label="Default" aria-describedby="input-sizing-default">
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <div class="input-group" style="text-align: center;">
-                                            <button style="margin: auto;" ng-click="addCharacter()" class="btn btn-primary" type="button" id="button-addon1">Add Character</button>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+        <ui-view></ui-view>
+
         
-        <div class="row" ng-repeat="char in characters">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Character: {{char.name}}</th>
-                                <th scope="col">Occupation: {{char.occupation}}</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col" colspan="2" style="text-align: center;">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                               
-                            <tr>
-                                <td>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">HP</span>
-                                        </div>
-                                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(char)"  class="form-control" ng-model="char.hp" aria-label="Default" aria-describedby="input-sizing-default">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">STR</span>
-                                        </div>
-                                        <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(char)"  class="form-control" ng-model="char.str"  aria-label="Default" aria-describedby="input-sizing-default">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">DEX</span>
-                                        </div>
-                                        <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(char)"  class="form-control" ng-model="char.dex"  aria-label="Default" aria-describedby="input-sizing-default">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">CON</span>
-                                        </div>
-                                        <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(char)"  class="form-control" ng-model="char.con"  aria-label="Default" aria-describedby="input-sizing-default">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group">
-                                        <button ng-click="updateChar(char._id)" class="btn btn-warning" type="button" id="button-addon1">update</button>
-                                    </div>
-                                </td>
-                                <td div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button ng-click="removeChar(char._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="controllers/controllers.js"></script>
-
 </body>
 </html>

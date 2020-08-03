@@ -1,4 +1,47 @@
-var app = angular.module('dgApp', []);
+var app = angular.module('dgApp', ['ui.router']);
+app.config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+    var helloState = {
+      name: 'hello',
+      url: '/hello',
+      template: '<h3>hello world!</h3>'
+    }
+  
+    var aboutState = {
+      name: 'about',
+      url: '/about',
+      templateUrl: '/partials/hello.html',
+      controller: 'homeCtrl'
+    }
+
+
+    var strVar="";
+strVar += "<div class=\"input-group input-group-sm mb-3\">";
+strVar += "        <div class=\"input-group-prepend\">";
+strVar += "            <span class=\"input-group-text\" id=\"basic-addon1\">Skill<\/span>";
+strVar += "        <\/div>";
+strVar += "        <input type=\"text\" class=\"form-control\" ng-model=\"skill\" aria-label=\"Default\" aria-describedby=\"input-sizing-default\">";
+strVar += "        <button style=\"margin: auto;\" ng-click=\"testSkill()\" class=\"btn btn-primary\" type=\"button\" id=\"button-addon1\">Add Character<\/button>";
+strVar += "    <\/div>";
+
+
+
+    var adminState = {
+        name: 'admin',
+        url: '/admin',
+        templateUrl: '/partials/admin.html',
+        controller: 'homeCtrl'
+      }
+  
+    $stateProvider.state(helloState);
+    $stateProvider.state(aboutState);
+    $stateProvider.state(adminState);
+  }]);
+
+
+  
 app.controller('homeCtrl', function($scope, $http) {    
 
 var refresh = function () {

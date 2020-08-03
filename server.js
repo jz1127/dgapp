@@ -8,6 +8,7 @@ var mongojs = require('mongojs');
 var db = mongojs('characters', ['characters']);
 var bodyParser = require('body-parser');
 var path = require('path');
+
 var sortByProperty = function (property) {
     return function (x, y) {
         return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? -1 : 1));

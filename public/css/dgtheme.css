@@ -3,7 +3,13 @@
 }
 body {
     background-color:  rgb(0, 0, 0);
+    background: url('../img/tempBack.jpg') no-repeat center fixed;
+    background-size: cover;
 }
 .jumbotron {
     background-color: rgb(78, 119, 78);
+    background-color:rgb(78, 119, 78);opacity:0.96;
+}
+.card {
+    background-color: rgb(255,255,255);opacity: 0.96;
 }
