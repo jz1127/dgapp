@@ -1,4 +1,5 @@
-var app = angular.module('dgApp', ['ui.router']);
+var app = angular.module('dgApp');
+
 app.config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -16,18 +17,6 @@ app.config([
       controller: 'homeCtrl'
     }
 
-
-    var strVar="";
-strVar += "<div class=\"input-group input-group-sm mb-3\">";
-strVar += "        <div class=\"input-group-prepend\">";
-strVar += "            <span class=\"input-group-text\" id=\"basic-addon1\">Skill<\/span>";
-strVar += "        <\/div>";
-strVar += "        <input type=\"text\" class=\"form-control\" ng-model=\"skill\" aria-label=\"Default\" aria-describedby=\"input-sizing-default\">";
-strVar += "        <button style=\"margin: auto;\" ng-click=\"testSkill()\" class=\"btn btn-primary\" type=\"button\" id=\"button-addon1\">Add Character<\/button>";
-strVar += "    <\/div>";
-
-
-
     var adminState = {
         name: 'admin',
         url: '/admin',
@@ -40,25 +29,19 @@ strVar += "    <\/div>";
     $stateProvider.state(adminState);
   }]);
 
-
-  
-app.controller('homeCtrl', function($scope, $http) {    
+app.controller('homeCtrl', function($scope, $http, characterService) {
 
 var refresh = function () {
-    $http({
-     method: 'GET',
-    url: '/characters'
-    }).then(function(response){
-        // console.log(response.data);
-        $scope.characters = response.data;
 
-        for (var key in $scope.newChar ) {
-            $scope.newChar[key] = null;
-          }
+    // characterService.getCharacters().then(function(char) {
+    //     $scope.characters = char;
+    // })
 
-    },function(response){
-        console.log('no response given');
-    });
+    characterService.getCharacters().then(char => $scope.characters = char);
+    
+    for (var key in $scope.newChar ) {
+        $scope.newChar[key] = null;
+    }
 };
 
 refresh();

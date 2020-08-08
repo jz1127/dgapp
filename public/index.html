@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <!-- <script src="lib/angular-ui-router.js"></script> -->
 <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+<script src="js/characterService.js"></script>
 <!-- <script src="js/appbody.js"></script> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dgtheme.css" >
@@ -27,7 +28,7 @@
   
             <!-- Card image -->
             <div class="view overlay my-4">
-                <img src="img/bannerTest2.png" class="img-fluid" alt="">
+                <!-- <img src="img/bannerTest2.png" class="img-fluid" alt=""> -->
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
@@ -35,7 +36,7 @@
   
             <h5 class="indigo-text h5 mb-4">Victor</h5>
   
-            <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            <p class="card-text">Truth is a privilege. Innocence is a luxury.</p>
   
             <!-- Linkedin -->
             <a class="fa-lg p-2 m-2 li-ic"><i class="fab fa-linkedin-in grey-text"></i></a>
@@ -49,17 +50,18 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
+                        <a ui-sref="#" ui-sref-active="active">Dashboard</a>
+                        <a ui-sref="#" ui-sref-active="active">Character Data</a>
                         <a ui-sref="hello" ui-sref-active="active">Hello</a>
                         <a ui-sref="about" ui-sref-active="active">About</a>
                         <a ui-sref="admin" ui-sref-active="active">Admin</a>
-                        
+                        <a ui-sref="#" ui-sref-active="active">Logon/off</a>                        
                     </div>
                 </div>
             </div>
         </div>
     
         <ui-view></ui-view>
-
         
     </div>
     <script src="controllers/controllers.js"></script>
