@@ -14,6 +14,7 @@
 <!-- <script src="js/appbody.js"></script> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dgtheme.css" >
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
     .active { color: red; font-weight: bolder; }
 </style>
@@ -28,13 +29,15 @@
   
             <!-- Card image -->
             <div class="view overlay my-4">
-                <!-- <img src="img/bannerTest2.png" class="img-fluid" alt=""> -->
+                <div style="background-color: #fff; max-width: 250px; text-align: center; margin: auto;">
+                    <img ng-src="img/{{image}}" class="img-fluid" alt="">
+                </div>
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
             </div>
   
-            <h5 class="indigo-text h5 mb-4">Victor</h5>
+            <h5 class="indigo-text h5 mb-4">{{tronname}}</h5>
   
             <p class="card-text">Truth is a privilege. Innocence is a luxury.</p>
   
@@ -50,11 +53,11 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <a ui-sref="#" ui-sref-active="active">Dashboard</a>
+                        <a ui-sref="dashboard.viewagents" ui-sref-active="active">Dashboard</a>
                         <a ui-sref="#" ui-sref-active="active">Character Data</a>
-                        <a ui-sref="hello" ui-sref-active="active">Hello</a>
-                        <a ui-sref="about" ui-sref-active="active">About</a>
-                        <a ui-sref="admin" ui-sref-active="active">Admin</a>
+                        <!-- <a ui-sref="hello" ui-sref-active="active">Hello</a> -->
+                        <!-- <a ui-sref="about" ui-sref-active="active">About</a> -->
+                        <!-- <a ui-sref="admin" ui-sref-active="active">Admin</a> -->
                         <a ui-sref="#" ui-sref-active="active">Logon/off</a>                        
                     </div>
                 </div>

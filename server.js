@@ -5,7 +5,7 @@ const express = require('express');
 var app = express();
 var mongojs = require('mongojs');
 // const { request } = require('express');
-var db = mongojs('characters', ['characters']);
+var db = mongojs('dgappdb', ['characters']);
 var bodyParser = require('body-parser');
 var path = require('path');
 
@@ -65,6 +65,16 @@ app.put('/characters/:id', function(req, res){
     });
     // console.log(req.body.name);
     // res.send("OK");
+
+    app.get('/agent/:id', function (req, res) {
+        var id = req.params.id;
+        console.log("id is: " + id);
+
+        db.characters.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+            console.log("From get " + doc);
+            res.json(doc);
+        });
+    });
 
 app.listen(3000);
 console.log("Server is running on port 3000.");

@@ -1,0 +1,54 @@
+<!-- <div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Skill</span>
+                    </div>
+                    <input type="text" class="form-control" ng-model="skill" aria-label="Default" aria-describedby="input-sizing-default">
+                    <button style="margin: auto;" ng-click="testSkill()" class="btn btn-primary" type="button" id="button-addon1">Skill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <ui-view></ui-view> 
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <ul class="herolist" >
+                    <a ui-sref="addagent"><div class="addbutton"></div></a>
+                    <a class="editagentlink" ui-sref="dashboard.editagent({id: char._id})">
+                        <li ng-repeat="char in characters">
+                            <div class="card inline">
+                                <div class="card-header">
+                                    <img ng-src="../img/{{char.image}}">
+                                </div>
+                                <a ui-sref="editagent({id: char._id})">
+                                <div class="card-body">
+                                    <h5>{{char.name}}</h5>
+                                    <h6>{{char.occupation}}</h6> <br />
+                                    <label>HP:</label> {{char.hp}}
+                                    <label>CON:</label> {{char.con}}<br />
+                                    <!-- <a style="margin: auto;" ui-sref="editagent({id: char._id})" class="btn btn-primary" type="a" id="button-addon1">Update</a> -->
+                                </div>    
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
