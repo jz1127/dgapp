@@ -52,7 +52,7 @@ app.delete('/characters/:id', function(req, res) {
 
 app.put('/characters/:id', function(req, res){
     var id = req.params.id;
-    console.log(req.body);
+    console.log("Request body was: " + req.body.con);
     db.characters.findAndModify({query: {_id: mongojs.ObjectId(id)},
     update: {$set: {name: req.body.name, occupation: req.body.occupation, hp: req.body.hp, 
         sanity: req.body.sanity, 

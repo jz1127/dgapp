@@ -9,7 +9,7 @@
                         <th scope="col">Occupation: {{agent.occupation}}</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
-                        <th scope="col" colspan="2" style="text-align: center;">Action</th>
+                        <!-- <th scope="col" colspan="2" style="text-align: center;">Action</th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                                 <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-model="agent.con"  aria-label="Default" aria-describedby="input-sizing-default">
                             </div>
                         </td>
-                        <td>
+                        <!-- <td>
                             <div class="input-group">
                                 <button ng-click="updateagent(agent._id)" class="btn btn-warning" type="button" id="button-addon1">update</button>
                             </div>
@@ -55,10 +55,23 @@
                             <div class="input-group-prepend">
                                 <button ng-click="removeagent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
                     </tbody>
                 </table>
+                <input type = "file" file-model = "myFile"/>
+         <button ng-click = "uploadFile()">upload me</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body button-panel center-text">
+                <button ui-sref="dashboard.viewagents" class="btn btn-primary" type="button">Back</button>
+                <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,37 @@
+{
+    "firstname" : "Benjamin"
+    "lastname" :"McGuire"
+    "email" : "purpletophatproductions@gmail.com"
+    "role" : "player"
+}
+
+
+{
+  firstname:"Benjamin",
+  lastname:"McGuire",
+  email:"purpletophatproductions@gmail.com",
+  role:"player"
+}
+
+5f2f0767509c8a6594b93a28 = Ben purpletophatproductions@gmail.com
+5f2f03efbbf69e695805d5a1 = Me jmcguire744@gmail.com
+
+
+
+    var strVar="";
+strVar += "<div class=\"input-group input-group-sm mb-3\">";
+strVar += "        <div class=\"input-group-prepend\">";
+strVar += "            <span class=\"input-group-text\" id=\"basic-addon1\">Skill<\/span>";
+strVar += "        <\/div>";
+strVar += "        <input type=\"text\" class=\"form-control\" ng-model=\"skill\" aria-label=\"Default\" aria-describedby=\"input-sizing-default\">";
+strVar += "        <button style=\"margin: auto;\" ng-click=\"testSkill()\" class=\"btn btn-primary\" type=\"button\" id=\"button-addon1\">Add Character<\/button>";
+strVar += "    <\/div>";
+
+
+For file upload go here
+https://www.tutorialspoint.com/angularjs/angularjs_upload_file.htm
+
+$location is how i might be able to fix the broken menu
+
+Need to review
+https://www.toptal.com/angular-js/top-18-most-common-angularjs-developer-mistakes
