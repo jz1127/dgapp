@@ -1,6 +1,6 @@
 /// <reference path="public\controllers\controllers.js"
 
-var app = angular.module('dgApp', ['ui.router']);
+var app = angular.module('dgApp', ['ui.router', 'ngFileUpload']);
 
 app.factory('characterService', function($http) {
     // console.log($http);

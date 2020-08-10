@@ -28,10 +28,24 @@ strVar += "        <button style=\"margin: auto;\" ng-click=\"testSkill()\" clas
 strVar += "    <\/div>";
 
 
-For file upload go here
-https://www.tutorialspoint.com/angularjs/angularjs_upload_file.htm
+FILE UPLOAD NOTES
+========================
+Used https://ciphertrick.com/file-upload-with-angularjs-and-nodejs/ 
+
+NOTE:: YOU HAVE CREATED A ROUTE CALLED CLIENT IN YOUR SERVER.JS FILE. KINDA GENERIC IF YOU WANT TO USE OTHER SCRIPTS LOCALLY. NEED TO FIGURE OUT WHAT TO DO HERE
+SEE https://stackoverflow.com/questions/27464168/how-to-include-scripts-located-inside-the-node-modules-folder
+
+https://www.tutorialspoint.com/angularjs/angularjs_upload_file.htm //THIS DID NOT WORK. PLUS THE OTHER ONE HAS DRAG NG-FILE-UPLOAD HAS DRAG AND DROP AND THUMBNAILS.
+
+END
+
+=================================================
 
 $location is how i might be able to fix the broken menu
 
 Need to review
 https://www.toptal.com/angular-js/top-18-most-common-angularjs-developer-mistakes
+
+Useful grunt and bower
+https://riptutorial.com/angularjs/example/21201/run-application-locally
+
