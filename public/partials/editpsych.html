@@ -32,13 +32,23 @@
                         </div>
                     </div>
 
-
-                    <div class="row" ng-repeat="bnd in bonds">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.name" ng-change="changeVal(agent)">
+                    <div class="bndList">
+                        <div class="row" ng-repeat="bnd in agent.bnd">
+                            <div class="col-sm-10">
+                                <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.name" ng-change="changeVal(agent)">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.score">
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.score">
+                        
+
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button ng-click="addBond()" class="btn btn-warning" type="button" id="button-addon1">Add Bond</button>
                         </div>
                     </div>
 

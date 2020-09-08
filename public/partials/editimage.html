@@ -32,6 +32,12 @@
                             <form class="form-group" ng-controller="editAgentDetailsController as up" name="up.upload_form">
                                 <div class="row">
                                     <div class="col">
+                                        <img style="width:200px; margin: 1em 0" ngf-thumbnail="up.file || 'img/' + agent.image"/>
+                                        <h5>Image thumbnail</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
                                         <input
                                             type="file"
                                             ngf-select
@@ -46,16 +52,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        Image thumbnail: <br />
-                                        <img style="width:100px;" ngf-thumbnail="up.file || 'img/' + agent.image"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
                                         <i ng-show="up.upload_form.file.$error.required">*required</i><br>
                                         <i ng-show="up.upload_form.file.$error.maxSize">File too large
                                         {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                                        <button type="submit" ng-click="up.submit(agent)">submit</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="up.submit(agent)">submit</button>
                                     </div>
                                 </div>
                                <div class="row">

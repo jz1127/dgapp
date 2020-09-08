@@ -116,6 +116,7 @@ app.factory('refreshService', ['characterService', function(characterService) {
         };
 
         var setTronText = function (text) {
+            console.log("The Tron is: " +text);
             if (typeof text !== "undefined") {
                 return text;
             }
@@ -128,39 +129,19 @@ app.factory('refreshService', ['characterService', function(characterService) {
         }
 }]);  
 
-// app.directive('fileModel', ['$parse', function ($parse) {
-//     return {
-//        restrict: 'A',
-//        link: function(scope, element, attrs) {
-//           var model = $parse(attrs.fileModel);
-//           var modelSetter = model.assign;
-          
-//           element.bind('change', function() {
-//              scope.$apply(function() {
-//                 modelSetter(scope, element[0].files[0]);
-//              });
-//           });
-//        }
-//     };
-//  }]);
 
-//  app.service('fileUpload', ['$http', function ($http) {
-//     this.uploadFileToUrl = function(file, uploadUrl) {
-//        var fd = new FormData();
-//        fd.append('file', file);
-    
-//        $http.post(uploadUrl, fd, {
-//           transformRequest: angular.identity,
-//           headers: {'Content-Type': undefined}
-//        })
-//        .then(function() {
-//        });
-//     }
-//  }]);
-
-
-app.controller('editAgentDetailsController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window) {
+app.controller('editAgentDetailsController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window, $location) {
     var vm = this;
+
+    $scope.updateAgent = function(agent) {
+        // console.log(agent);
+        console.log("The agent was: " + JSON.stringify(agent));
+        $http.put('/characters/' + agent._id, agent).then(function(response){
+            console.log("This is response: " + JSON.stringify(response));
+        },function(response){
+            console.log('no response given');
+        });
+    }
 
     vm.submit = function(agent){ //function to call on form submit
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
@@ -177,6 +158,9 @@ app.controller('editAgentDetailsController', function($scope, $http, $stateParam
                 $window.alert('Success ' + JSON.stringify(resp.data.modname) + ' uploaded. Response: ');
                 console.log("response was " +JSON.stringify(resp.data));
                 $scope.$parent.agent.image = resp.data.modname;
+                $scope.updateAgent($scope.$parent.agent);
+                $location.path('/dashboard/editagent/' +$scope.$parent.agent._id);
+                // console.log("Parent, Parnet is " +$scope.$parent.$parent.image);
             } else {
                 $window.alert('an error occured');
             }
@@ -211,41 +195,19 @@ app.controller('editAgentDetailsController', function($scope, $http, $stateParam
         $scope.updateAgent(row);
     }
 
-    $scope.updateAgent = function(agent) {
-        // console.log(agent);
-        console.log("The agent was: " + JSON.stringify(agent));
-        $http.put('/characters/' + agent._id, agent).then(function(response){
-            console.log("This is response: " + JSON.stringify(response));
-        },function(response){
-            console.log('no response given');
-        });
+    $scope.addBond = function() {
+        var keys = Object.keys($scope.agent.bnd);
+        numBonds = keys.length + 1;
+        console.log("agentBonds is" + JSON.stringify($scope.agent.bnd));
+        var newBondName = "bond" + numBonds;
+        $scope.agent.bnd[newBondName] = {name: "test", score: 0 };
+        // var divElement = angular.element(document.querySelector('.bndList'));
+        // var bndInputs = '<div class="row"><div class="col-sm-10"><input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.bond' + numBonds + '.name" ng-change="changeVal(agent)"></div><div class="col-sm-2"><input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.bond' + numBonds +  '.score"></div></div>';
+        // var htmlElement = angular.element(bndInputs);
+        // divElement.append(htmlElement);
+        // $compile(divElement)($scope);
+        // alert("Num Bonds " +numBonds);
     }
-
-    $scope.bonds = [
-        {
-            bond: "Bond1",
-            score: "4"
-        },
-        {
-            bond: "Bond2",
-            score: "3"
-        },
-        {
-            bond: "",
-            score: ""
-        },
-        {
-            bond: "",
-            score: ""
-        },
-        {
-            bond: "",
-            score: ""
-        }
-    ];
-
-
-    
 
     // $scope.uploadFile = function() {               
     //     var file = $scope.myFile;
