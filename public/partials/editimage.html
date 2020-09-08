@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body" style="font-size: 40px; text-align: center;">
+                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
+                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user active"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
+                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
+                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="container">                        
+                    <div class="row">
+                        <div class="col">
+                                <!-- <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Image file:</span>
+                                </div> -->
+                                <input ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.image"  aria-label="Default" aria-describedby="input-sizing-default" hidden>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            <form class="form-group" ng-controller="editAgentDetailsController as up" name="up.upload_form">
+                                <div class="row">
+                                    <div class="col">
+                                        <input
+                                            type="file"
+                                            ngf-select
+                                            ngf-drop
+                                            ng-model="up.file"
+                                            name="file"
+                                            ngf-pattern="'image/*'"
+                                            accept="image/*"
+                                            ngf-max-size="20MB"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        Image thumbnail: <br />
+                                        <img style="width:100px;" ngf-thumbnail="up.file || 'img/' + agent.image"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                        <i ng-show="up.upload_form.file.$error.maxSize">File too large
+                                        {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                                        <button type="submit" ng-click="up.submit(agent)">submit</button>
+                                    </div>
+                                </div>
+                               <div class="row">
+                                   <div class="col">
+                                    <p>{{up.progress}}
+                                   </div>
+                               </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col">
+                            <div ng-controller="editAgentDetailsController as up" name="up.upload_form">
+                                <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
+                                on file change multiple:
+                                <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+                                Drop File:
+                                <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                                    ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                                    accept="image/*,application/pdf" 
+                                    ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+                                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                                Files:
+                                <ul>
+                                    <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                                </ul>
+                                Upload Log:
+                                <pre>{{log}}</pre>
+                                <button type="submit" ng-click="up.submit()">submit</button>
+                                <p>{{up.progress}}
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body button-panel center-text">
+                <button ui-sref="dashboard.editagent({id: agent._id})" class="btn btn-primary" type="button">Back</button>
+                <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                
+                <!-- <button ui-sref="dashboard.editstats({id: agent._id})" class="btn btn-warning" type="button" id="button-addon1">Next</button> -->
+                <!-- <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button> -->
+            </div>
+        </div>
+    </div>
+</div>

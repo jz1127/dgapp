@@ -7,7 +7,7 @@ app.config([
     var helloState = {
       name: 'hello',
       url: '/hello',
-      template: '<h3>hello world!</h3>'
+      template: '<h3>hello world!</h3>',
     }
   
     var aboutState = {
@@ -46,6 +46,38 @@ app.config([
         controller: 'editAgentDetailsController'
       }
 
+     var editstatsState = {
+        name: 'dashboard.editstats',
+        url: '/editstats/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/stats.html',
+        controller: 'editAgentDetailsController'
+      }
+
+      var editpsychState = {
+        name: 'dashboard.editpsych',
+        url: '/editpsych/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editpsych.html',
+        controller: 'editAgentDetailsController'
+      }
+
+      var editskillsState = {
+        name: 'dashboard.editskills',
+        url: '/editskills/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editskills.html',
+        controller: 'editAgentDetailsController'
+      }
+      
+      var editimageState = {
+        name: 'dashboard.editimage',
+        url: '/editimage/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editimage.html',
+        controller: 'editAgentDetailsController'
+      }
+
     var adminState = {
         name: 'admin',
         url: '/admin',
@@ -58,6 +90,10 @@ app.config([
     $stateProvider.state(dashboardState);
     $stateProvider.state(addagentState);
     $stateProvider.state(editagentState);
+    $stateProvider.state(editstatsState);
+    $stateProvider.state(editpsychState);
+    $stateProvider.state(editskillsState);
+    $stateProvider.state(editimageState);
     $stateProvider.state(viewagentsState);
     $stateProvider.state(adminState);
 
@@ -72,6 +108,7 @@ app.config([
 
 app.factory('refreshService', ['characterService', function(characterService) {   
         var setImage = function(pic) {
+            console.log("The pic is: " +pic);
                 if (typeof pic !== "undefined") {
                 return image = pic;
             }
@@ -125,7 +162,7 @@ app.factory('refreshService', ['characterService', function(characterService) {
 app.controller('editAgentDetailsController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window) {
     var vm = this;
 
-    vm.submit = function(){ //function to call on form submit
+    vm.submit = function(agent){ //function to call on form submit
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
             vm.upload(vm.file); //call upload function
         }
@@ -137,7 +174,9 @@ app.controller('editAgentDetailsController', function($scope, $http, $stateParam
             data:{file:file} //pass file as data, should be user ng-model
         }).then(function (resp) { //upload function returns a promise
             if(resp.data.error_code === 0){ //validate success
-                $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                $window.alert('Success ' + JSON.stringify(resp.data.modname) + ' uploaded. Response: ');
+                console.log("response was " +JSON.stringify(resp.data));
+                $scope.$parent.agent.image = resp.data.modname;
             } else {
                 $window.alert('an error occured');
             }
@@ -163,24 +202,50 @@ app.controller('editAgentDetailsController', function($scope, $http, $stateParam
     });
 
     $scope.changeVal = function(row) {
-        console.log("Row is: " + JSON.stringify(row));
-
         $scope.characters.find((o, i) => {
             if (o.name === row.name) {
-                $scope.characters[i] = { name: o.name, occupation: o.occupation, hp: row.hp, str: row.str, dex: row.dex, con: row.con };
+                $scope.characters[i] = { name: o.name, occupation: o.occupation, hp: row.hp, str: row.str, dex: row.dex, con: row.con, image: row.image };
                 return true;    
             }
         });
+        $scope.updateAgent(row);
     }
 
     $scope.updateAgent = function(agent) {
         // console.log(agent);
+        console.log("The agent was: " + JSON.stringify(agent));
         $http.put('/characters/' + agent._id, agent).then(function(response){
             console.log("This is response: " + JSON.stringify(response));
         },function(response){
             console.log('no response given');
         });
     }
+
+    $scope.bonds = [
+        {
+            bond: "Bond1",
+            score: "4"
+        },
+        {
+            bond: "Bond2",
+            score: "3"
+        },
+        {
+            bond: "",
+            score: ""
+        },
+        {
+            bond: "",
+            score: ""
+        },
+        {
+            bond: "",
+            score: ""
+        }
+    ];
+
+
+    
 
     // $scope.uploadFile = function() {               
     //     var file = $scope.myFile;
@@ -203,6 +268,7 @@ app.controller('dashCtrl', function($scope, $http, $stateParams, characterServic
         characterService.getCharacters().then(char => $scope.characters = char);
         $scope.$parent.tronname = refreshService.setTronText();
         $scope.$parent.image = refreshService.setImage();
+        console.log("her e " +refreshService.setImage());
 
 
         for (var key in $scope.newChar ) {
@@ -253,7 +319,7 @@ app.controller('dashCtrl', function($scope, $http, $stateParams, characterServic
         },function(response){
             console.log('no response given');
         });
-    }
+    } 
 
     //actuallupdate the agent
 

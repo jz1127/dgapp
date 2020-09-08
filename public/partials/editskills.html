@@ -1,0 +1,406 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body" style="font-size: 40px; text-align: center;">
+                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
+                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
+                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs active"></i></a>
+                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">    
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col sectionTitle">
+                            <h2>Skills</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.acct.status"  aria-label="Default" aria-describedby="input-sizing-default"> Accounting (10%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.acct.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.alert.status"  aria-label="Default" aria-describedby="input-sizing-default"> Alertness (20%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.alert.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.anthro.status"  aria-label="Default" aria-describedby="input-sizing-default"> Anthropology (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.anthro.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.archeo.status"  aria-label="Default" aria-describedby="input-sizing-default"> Archaeology (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.archeo.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.art.status"  aria-label="Default" aria-describedby="input-sizing-default"> Art (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.art.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.artillery.status"  aria-label="Default" aria-describedby="input-sizing-default"> Artillery (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.artillery.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.athletics.status"  aria-label="Default" aria-describedby="input-sizing-default"> Athletics (30%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.athletics.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.bureaucracy.status"  aria-label="Default" aria-describedby="input-sizing-default"> Bureaucracy (10%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.bureaucracy.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.compsci.status"  aria-label="Default" aria-describedby="input-sizing-default"> Computer Science (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.compsci.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.craft.status"  aria-label="Default" aria-describedby="input-sizing-default"> Craft (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.craft.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.criminology.status"  aria-label="Default" aria-describedby="input-sizing-default"> Criminology (10%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.criminology.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.demo.status"  aria-label="Default" aria-describedby="input-sizing-default"> Demolitions (0%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.demo.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.disguise.status"  aria-label="Default" aria-describedby="input-sizing-default"> Disguise (10%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.disguise.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.dodge.status"  aria-label="Default" aria-describedby="input-sizing-default"> Dodge (30%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.dodge.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.drive.status"  aria-label="Default" aria-describedby="input-sizing-default"> Drive (20%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.drive.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.firearms.status"  aria-label="Default" aria-describedby="input-sizing-default"> Firearms (20%)
+                                </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.firearms.score">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scn Col -->
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.firstaid.status"  aria-label="Default" aria-describedby="input-sizing-default"> First Aid (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.firstaid.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.forensics.status"  aria-label="Default" aria-describedby="input-sizing-default"> Forensics (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.forensics.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.heavy_machinery.status"  aria-label="Default" aria-describedby="input-sizing-default"> Heavy Machinery (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.heavy_machinery.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.heavy_weapons.status"  aria-label="Default" aria-describedby="input-sizing-default"> Heavy Weapons (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.heavy_weapons.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.history.status"  aria-label="Default" aria-describedby="input-sizing-default"> History (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.history.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.humint.status"  aria-label="Default" aria-describedby="input-sizing-default"> HUMINT (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.humint.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.law.status"  aria-label="Default" aria-describedby="input-sizing-default"> Law (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.law.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.medicine.status"  aria-label="Default" aria-describedby="input-sizing-default"> Medicine (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.medicine.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.melee_weapons.status"  aria-label="Default" aria-describedby="input-sizing-default"> Melee Weapons (30%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.melee_weapons.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.milsci.status"  aria-label="Default" aria-describedby="input-sizing-default"> Mil. Sci. (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.milsci.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.navigate.status"  aria-label="Default" aria-describedby="input-sizing-default"> Navigate (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.navigate.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.occult.status"  aria-label="Default" aria-describedby="input-sizing-default"> Occult (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.occult.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.persuade.status"  aria-label="Default" aria-describedby="input-sizing-default"> Persuade (20%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.persuade.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.pharmacy.status"  aria-label="Default" aria-describedby="input-sizing-default"> Pharmacy (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.pharmacy.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.pilot.status"  aria-label="Default" aria-describedby="input-sizing-default"> Pilot (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.pilot.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.psychotherapy.status"  aria-label="Default" aria-describedby="input-sizing-default"> Psychotherapy (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.psychotherapy.score">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third col -->
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.ride.status"  aria-label="Default" aria-describedby="input-sizing-default"> Ride (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.ride.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.science.status"  aria-label="Default" aria-describedby="input-sizing-default"> Science (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.science.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.search.status"  aria-label="Default" aria-describedby="input-sizing-default"> Search (20%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.search.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.sigint.status"  aria-label="Default" aria-describedby="input-sizing-default"> SIGINT (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.sigint.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.stealth.status"  aria-label="Default" aria-describedby="input-sizing-default"> Stealth (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.stealth.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.surgery.status"  aria-label="Default" aria-describedby="input-sizing-default"> Surgery (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.surgery.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.survival.status"  aria-label="Default" aria-describedby="input-sizing-default"> Survival (10%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.survival.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.swim.status"  aria-label="Default" aria-describedby="input-sizing-default"> Swim (20%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.swim.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.unarmed_combat.status"  aria-label="Default" aria-describedby="input-sizing-default"> Unarmed Combat (40%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.unarmed_combat.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.skills.unnatural.status"  aria-label="Default" aria-describedby="input-sizing-default"> Unnatural (0%)
+                                    </div>
+                                <div class="col-sm-4">
+                                   <input type="text" class="form-control skill-score"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.skills.unnatural.score">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Foreign Languages and Other Skills:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.languages"  aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Check a box when you attempt to use a skill and fail. After the session, add 1d4-1 to each checked skill and erase all checks.
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body button-panel center-text">
+                <button ui-sref="dashboard.editpsych({id: agent._id})" class="btn btn-primary" type="button">Back</button>
+                <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                <button ui-sref="dashboard.editpsych({id: agent._id})" class="btn btn-warning" type="button" id="button-addon1">Next</button>
+                <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
+            </div>
+        </div>
+    </div>
+</div>

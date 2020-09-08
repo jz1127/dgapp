@@ -5,7 +5,7 @@ const express = require('express');
 var app = express();
 var mongojs = require('mongojs');
 // const { request } = require('express');
-var db = mongojs('characters', ['characters']);
+var db = mongojs('dgappdb', ['characters']);
 var multer = require('multer');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -27,7 +27,7 @@ https://ciphertrick.com/file-upload-with-angularjs-and-nodejs/
 
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -42,6 +42,7 @@ In the storage setting we give the destination path to save our files. We also r
 I’m appending datetime to the name in order to avoid any duplicate naming conflict.
 Also we need to append the file extension as by default Multer would save the file without any extension. */
 
+var newName = ""
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {
@@ -49,7 +50,8 @@ var storage = multer.diskStorage({ //multers disk storage settings
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        newName = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]
+        cb(null, newName)
     }
 });
 
@@ -69,7 +71,7 @@ app.post('/upload', function(req, res) {
              res.json({error_code:1,err_desc:err});
              return;
         }
-         res.json({error_code:0,err_desc:null});
+         res.json({error_code:0,err_desc:null,modname:newName});
     })
 });
 
@@ -107,13 +109,28 @@ app.delete('/characters/:id', function(req, res) {
 
 app.put('/characters/:id', function(req, res){
     var id = req.params.id;
-    console.log("Request body was: " + req.body.con);
+    console.log("Request body was: " + JSON.stringify(req.body));
+
+    const newBody = Object.keys(req.body).reduce((object, key) => {        
+        if (key != "_id") {
+          object[key] = req.body[key];
+        }
+        return object
+      }, {});
+
+    for (const key in newBody) {
+        console.log(newBody[key]);
+        if (null == newBody[key] || "" == newBody[key]) {
+            // console.log("Yes it is " + key);
+            delete newBody[key];
+        }
+    }
+
+    console.log("newBody: " + JSON.stringify(newBody));
+
+
     db.characters.findAndModify({query: {_id: mongojs.ObjectId(id)},
-    update: {$set: {name: req.body.name, occupation: req.body.occupation, hp: req.body.hp, 
-        sanity: req.body.sanity, 
-        str: req.body.str, 
-        dex: req.body.dex, 
-        con: req.body.con }}, 
+    update: {$set: newBody}, 
         new: true}, function (err, doc) {
             res.json(doc);
         });

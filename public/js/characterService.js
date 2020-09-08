@@ -10,7 +10,8 @@ app.factory('characterService', function($http) {
                 method: 'GET',
                 url: '/characters'
                 }).then(function(response) {
-                    response.data.filter(myFilter)
+                    response.data.filter(myFilter);
+                    // console.log("Filter response " + JSON.stringify(response.data) )
                     return response.data;
                 }, function(response) {
                     console.log('no response given');
@@ -20,7 +21,7 @@ app.factory('characterService', function($http) {
 });
 
 var myFilter = function(data) {
-    if (typeof data.image == "undefined") {
+    if (typeof data.image == "undefined" || null == data.image) {
         return data.image = "Front_Seal.png";
     }
 }

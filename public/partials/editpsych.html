@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body" style="font-size: 40px; text-align: center;">
+                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
+                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes active"></i></a>
+                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
+                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col sectionTitle">
+                            <h2>Phsycological Data</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            Bonds
+                        </div>
+                        <div class="col-sm-2">
+                            Score
+                        </div>
+                    </div>
+
+
+                    <div class="row" ng-repeat="bnd in bonds">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.name" ng-change="changeVal(agent)">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.score">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Motivations and Mental Disorders
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.motives"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            INCIDENTS OF SAN LOSS WITHOUT GOING INSANE
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Violence: 
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adaptviolence1"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adaptviolence2"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adaptviolence3"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <span class="adapted">adapted</span>
+                        </div>
+                        <div class="col-sm-6">
+                            Helplessness: 
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adapthelpless1"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adapthelpless2"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adapthelpless3"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <span class="adapted">adapted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body button-panel center-text">
+                <button ui-sref="dashboard.editstats({id: agent._id})" class="btn btn-primary" type="button">Back</button>
+                <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                <button ui-sref="dashboard.editskills({id: agent._id})" class="btn btn-warning" type="button" id="button-addon1">Next</button>
+                <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
+            </div>
+        </div>
+    </div>
+</div>

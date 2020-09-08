@@ -41,7 +41,18 @@
                                     <h5>{{char.name}}</h5>
                                     <h6>{{char.occupation}}</h6> <br />
                                     <label>HP:</label> {{char.hp}}
-                                    <label>CON:</label> {{char.con}}<br />
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{char.hp}}" aria-valuemin="0" aria-valuemax="{{ (char.str + agent.con) / 2}}" style="width: {{char.hp}}%">
+                                            <span class="sr-only">{{char.hp}}% Complete</span>
+                                        </div>
+                                    </div>
+
+                                    <label>SAN:</label> {{char.sanity}}<br />
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{char.sanity}}" aria-valuemin="0" aria-valuemax="{{ char.pow * 5}}" style="width: {{char.sanity}}%">
+                                            <span class="sr-only">{{char.sanity}}% Complete</span>
+                                        </div>
+                                    </div>
                                     <!-- <a style="margin: auto;" ui-sref="editagent({id: char._id})" class="btn btn-primary" type="a" id="button-addon1">Update</a> -->
                                 </div>    
                             </div>

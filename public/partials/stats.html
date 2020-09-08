@@ -1,0 +1,220 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body" style="font-size: 40px; text-align: center;">
+                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
+                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt active"></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
+                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
+                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="container">
+                    <div class="col sectionTitle">
+                        <h2>Statistical Data</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            Stats
+                        </div>
+                        <div class="col-sm-3">
+                            Score
+                        </div>
+                        <div class="col-sm-3">
+                            x5
+                        </div>
+                        <div class="col-sm-3">
+                            Distinguishing Features
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Strength (STR)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.str"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.str * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.strfeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Constitution (CON)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.con"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.con * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.confeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Dexterity (DEX)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.dex"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.dex * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.dexfeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Intelligence (INT)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.int"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.int * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.intfeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Power (POW)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.pow"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.pow * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.powfeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Charisma (CHA)" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.cha"  aria-label="Default" aria-describedby="input-sizing-default">    
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" value="{{agent.cha * 5}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.chafeatures"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+
+                    <!-- Derived -->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Derived Attributes
+                        </div>
+                        <div class="col-sm-4">
+                            Maximum
+                        </div>
+                        <div class="col-sm-4">
+                            Current
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Hit Points (HP)" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" value="{{ (agent.str + agent.con) / 2}}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.hp" aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Willpower Points (WP)" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" value="{{ agent.pow }}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.pow" aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Sanity Points (SAN)" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" value="{{ agent.pow * 5 }}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.sanity" aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" value="Breaking Point (BP)" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" value="{{ agent.sanity - agent.pow }}"  aria-label="Default" aria-describedby="input-sizing-default" readonly>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.bp" aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+
+                    <!-- Phys Desc -->
+
+                    <div class="row">
+                        <div class="col">
+                            Physical Description
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.physdesc" aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body button-panel center-text">
+                <button ui-sref="dashboard.editagent({id: agent._id})" class="btn btn-primary" type="button">Back</button>
+                <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                <button ui-sref="dashboard.editpsych({id: agent._id})" class="btn btn-warning" type="button" id="button-addon1">Next</button>
+                <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
+            </div>
+        </div>
+    </div>
+</div>

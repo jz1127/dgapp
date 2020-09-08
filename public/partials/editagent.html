@@ -1,84 +1,125 @@
 <div class="row">
     <div class="col">
         <div class="card">
+            <div class="card-body" style="font-size: 40px; text-align: center;">
+                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
+                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user active"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
+                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
+                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">agent: {{agent.name}}</th>
-                        <th scope="col">Occupation: {{agent.occupation}}</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <!-- <th scope="col" colspan="2" style="text-align: center;">Action</th> -->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
+                <div class="container">
+                    <div class="col sectionTitle">
+                        <h2>Personal Data</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 profile">
+                            <a ui-sref="dashboard.editimage({id: agent._id})"><img ng-src="img/{{agent.image}}"></a>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Agent Name</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.name" aria-label="Default" aria-describedby="input-sizing-default">
+                                <small id="emailHelp" class="form-text text-muted">LAST NAME, FIRST NAME (ALIAS OR CODE NAME IF APPLICABLE)</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Profession</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.occupation" aria-label="Default" aria-describedby="input-sizing-default">
+                                <small id="emailHelp" class="form-text text-muted">(RANK IF APPLICABLE)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Employer</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.employer" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">LAST NAME, FIRST NAME (ALIAS OR CODE NAME IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nationality</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.nationality" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">(RANK IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sex</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.sex" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">LAST NAME, FIRST NAME (ALIAS OR CODE NAME IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Age</label>
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.age" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">(RANK IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">DOB</label>
+                                <input type="date" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.dob.value" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">(RANK IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Education/History</label>
+                                <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.education" aria-label="Default" aria-describedby="input-sizing-default">
+                                <!-- <small id="emailHelp" class="form-text text-muted">(RANK IF APPLICABLE)</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- <div class="row">
+                        <div class="col">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">HP</span>
+                                    <span class="input-group-text" id="basic-addon1">Image file:</span>
                                 </div>
-                                    <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-model="agent.hp" aria-label="Default" aria-describedby="input-sizing-default">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">STR</span>
-                                </div>
-                                <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-model="agent.str"  aria-label="Default" aria-describedby="input-sizing-default">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">DEX</span>
-                                </div>
-                                <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-model="agent.dex"  aria-label="Default" aria-describedby="input-sizing-default">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">CON</span>
-                                </div>
-                                <input type="number" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-model="agent.con"  aria-label="Default" aria-describedby="input-sizing-default">
-                            </div>
-                        </td>
-                        <!-- <td>
-                            <div class="input-group">
-                                <button ng-click="updateagent(agent._id)" class="btn btn-warning" type="button" id="button-addon1">update</button>
-                            </div>
-                        </td>
-                        <td div class="input-group">
-                            <div class="input-group-prepend">
-                                <button ng-click="removeagent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
-                            </div>
-                        </td> -->
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- <input type = "file" file-model = "myFile"/>
-         <button ng-click = "uploadFile()">upload me</button> -->
-         <form  ng-controller="editAgentDetailsController as up" name="up.upload_form">
-            Single Image with validations
-        <input
-            type="file"
-            ngf-select
-            ng-model="up.file"
-            name="file"
-            ngf-pattern="'image/*'"
-            accept="image/*"
-            ngf-max-size="20MB"
-            />
-        Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-        <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-        <i ng-show="up.upload_form.file.$error.maxSize">File too large
-        {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-        <button type="submit" ng-click="up.submit()">submit</button>
-        <p>{{up.progress}}
-    </form>
+                                <input ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.image"  aria-label="Default" aria-describedby="input-sizing-default">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form  ng-controller="editAgentDetailsController as up" name="up.upload_form">
+                                Single Image with validations
+                                <input
+                                    type="file"
+                                    ngf-select
+                                    ng-model="up.file"
+                                    name="file"
+                                ngf-pattern="'image/*'"
+                                accept="image/*"
+                                ngf-max-size="20MB"
+                                />
+                                Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+                                <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                <i ng-show="up.upload_form.file.$error.maxSize">File too large
+                                {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                                <button type="submit" ng-click="up.submit()">submit</button>
+                                <p>{{up.progress}}
+                            </form>
+                        </div>
+                    </div> -->
+
+                </div>
             </div>
         </div>
     </div>
@@ -89,6 +130,8 @@
             <div class="card-body button-panel center-text">
                 <button ui-sref="dashboard.viewagents" class="btn btn-primary" type="button">Back</button>
                 <button ng-click="updateAgent(agent)" class="btn btn-warning" type="button" id="button-addon1">update</button>
+                
+                <button ui-sref="dashboard.editstats({id: agent._id})" class="btn btn-warning" type="button" id="button-addon1">Next</button>
                 <button ng-click="removeaAgent(agent._id)" class="btn btn-danger" type="button" id="button-addon1">delete</button>
             </div>
         </div>
