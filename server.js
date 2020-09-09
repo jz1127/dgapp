@@ -99,6 +99,13 @@ app.post('/characters', function(req, res) {
     }) 
 });
 
+app.post('/weapons', function(req, res) {
+    console.log(JSON.stringify(req.body));
+    db.weapons.insert(req.body, function(err, doc) {
+        res.json(doc);
+    }) 
+});
+
 app.delete('/characters/:id', function(req, res) {
     var id = req.params.id;
     console.log("from server the id is: " + id);
