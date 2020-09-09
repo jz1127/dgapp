@@ -1,0 +1,130 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Add Weapons</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Category</span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="newWep.category" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Weapon Name</span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="newWep.name" aria-required="true" aria-label="Default" aria-describedby="input-sizing-default" required>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Skill</span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="newWep.skill" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Damage</span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="newWep.damage" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Armor Piercing</span>
+                                    </div>
+                                    <input type="number"  class="form-control" ng-model="newWep.armor_piercing" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Base Range</span>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="newWep.base_range" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Leathality</span>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="newWep.leathality" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Kill Radius</span>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="newWep.kill_radius" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Ammo Capacity</span>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="newWep.ammo_capacity" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Uses</span>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="newWep.uses" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Victim's Penalty</span>
+                                    </div>
+                                    <input type="text" class="form-control" ng-model="newWep.victims_penalty" aria-label="Default" aria-describedby="input-sizing-default">
+                                </div>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="input-group" style="text-align: center;">
+                                    <button style="margin: auto;" ng-click="addWeapon()" class="btn btn-primary" type="button" id="button-addon1">Add Weapon</button>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

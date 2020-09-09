@@ -4,11 +4,12 @@
             <div class="card-body" style="font-size: 40px; text-align: center;">
                 <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
                 <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user"></i></a>
-                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
-                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes active"></i></a>
+                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-heartbeat"></i></i></a>
+                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
                 <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
                 <a ui-sref="dashboard.editinjuries({id: agent._id})"><i class="fas fa-file-medical"></i></a>
-                <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a>
+                <a ui-sref="dashboard.editarmor({id: agent._id})"><i class="fas fa-shield-alt active"></i></a>
+                <!-- <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a> -->
             </div>
         </div>
     </div>
@@ -21,61 +22,55 @@
                 <div class="container">
                     <div class="row">
                         <div class="col sectionTitle">
-                            <h2>Phsycological Data</h2>
+                            <h2>Armor & Gear</h2>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-10">
-                            Bonds
+                        <div class="col-sm-2">
+                            Category
+                        </div>
+                        <div class="col-sm-8">
+                            Description
                         </div>
                         <div class="col-sm-2">
-                            Score
+                            Armor Rating?
                         </div>
                     </div>
 
-                    <div class="bndList">
-                        <div class="row" ng-repeat="bnd in agent.bnd">
-                            <div class="col-sm-10">
-                                <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.name" ng-change="changeVal(agent)">
-                            </div>
+                    <!-- <div class="row" ng-if="!agent.injuries">
+                        <div class="col-sm-6">
+                            <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.injuries.injury.name" ng-change="changeVal(agent)">
+                        </div>
+                        <div class="col-sm-6">
+                            Treated?: <input type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.injuries.injury.treated" ng-change="changeVal(agent)">
+                        </div>
+                    </div>                         -->
+
+                    <div class="armorList">
+                        <div class="row" ng-repeat="item in agent.armor">
                             <div class="col-sm-2">
-                                <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="bnd.score" ng-change="changeVal(agent)">
+                                <select name="itemtype" class="form-control" ng-model="item.category" aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
+                                    <option value="armor">Armor</option>
+                                    <option value="gear">Gear</option>
+                                </select>
+                                <!-- <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.category" ng-change="changeVal(agent)"> -->
                             </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <button ng-click="addRow('bnd', 'bond')" class="btn btn-warning" type="button" id="button-addon1">Add Bond</button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            Motivations and Mental Disorders
-                        </div>
-                    </div>
-                    <div class="bndList">
-                        <div class="row" ng-repeat="motive in agent.motives">
-                            <div class="col">
-                                <input type="textarea" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="motive.description"  aria-label="Default" aria-describedby="input-sizing-default">
+                            <div class="col-sm-8">
+                                <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.name" ng-change="changeVal(agent)">
                             </div>
-                        </div>
+                            <div class="col-sm-2" ng-if="item.category == 'armor'">
+                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control inline"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.armor_rating" ng-change="changeVal(agent)">
+                            </div>
+                        </div>                        
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <button ng-click="addRow('motives', 'motive')" class="btn btn-warning" type="button" id="button-addon1">Add Motive</button>
+                            <button ng-click='addRow("armor", "item")' class="btn btn-warning" type="button" id="button-addon1">Add Armor/Gear</button>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col">
-                            INCIDENTS OF SAN LOSS WITHOUT GOING INSANE
-                        </div>
-                    </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-sm-6">
                             Violence: 
                             <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adaptviolence1"  aria-label="Default" aria-describedby="input-sizing-default">
@@ -90,7 +85,7 @@
                             <input class="inline" type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)"  class="form-control" ng-change="changeVal(agent)" ng-model="agent.adapthelpless3"  aria-label="Default" aria-describedby="input-sizing-default">
                             <span class="adapted">adapted</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

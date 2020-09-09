@@ -43,7 +43,7 @@ app.config([
         url: '/editagent/:id',
         // parent: 'dashboard',
         templateUrl: '/partials/editagent.html',
-        controller: 'editAgentDetailsController'
+        controller: 'editAgentController'
       }
 
      var editstatsState = {
@@ -51,7 +51,7 @@ app.config([
         url: '/editstats/:id',
         // parent: 'dashboard',
         templateUrl: '/partials/stats.html',
-        controller: 'editAgentDetailsController'
+        controller: 'editAgentController'
       }
 
       var editpsychState = {
@@ -59,7 +59,7 @@ app.config([
         url: '/editpsych/:id',
         // parent: 'dashboard',
         templateUrl: '/partials/editpsych.html',
-        controller: 'editAgentDetailsController'
+        controller: 'editAgentController'
       }
 
       var editskillsState = {
@@ -67,7 +67,7 @@ app.config([
         url: '/editskills/:id',
         // parent: 'dashboard',
         templateUrl: '/partials/editskills.html',
-        controller: 'editAgentDetailsController'
+        controller: 'editAgentController'
       }
       
       var editimageState = {
@@ -75,8 +75,25 @@ app.config([
         url: '/editimage/:id',
         // parent: 'dashboard',
         templateUrl: '/partials/editimage.html',
-        controller: 'editAgentDetailsController'
+        controller: 'editAgentController'
       }
+
+      var editinjuriesState = {
+        name: 'dashboard.editinjuries',
+        url: '/editinjuries/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editinjuries.html',
+        controller: 'editAgentController'
+      }
+
+      var editarmorState = {
+        name: 'dashboard.editarmor',
+        url: '/editarmor/:id',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editarmor.html',
+        controller: 'editAgentController'
+      }
+
 
     var adminState = {
         name: 'admin',
@@ -84,6 +101,13 @@ app.config([
         templateUrl: '/partials/admin.html',
         controller: 'dashCtrl'
       }
+
+      var addweaponsState = {
+        name: 'weapons',
+        url: '/addweapons',
+        templateUrl: '/partials/addweapons.html',
+        controller: 'weapons'
+      }      
   
     $stateProvider.state(helloState);
     $stateProvider.state(aboutState);
@@ -95,6 +119,9 @@ app.config([
     $stateProvider.state(editskillsState);
     $stateProvider.state(editimageState);
     $stateProvider.state(viewagentsState);
+    $stateProvider.state(addweaponsState);
+    $stateProvider.state(editinjuriesState);
+    $stateProvider.state(editarmorState);
     $stateProvider.state(adminState);
 
 
@@ -130,93 +157,7 @@ app.factory('refreshService', ['characterService', function(characterService) {
 }]);  
 
 
-app.controller('editAgentDetailsController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window, $location) {
-    var vm = this;
 
-    $scope.updateAgent = function(agent) {
-        // console.log(agent);
-        console.log("The agent was: " + JSON.stringify(agent));
-        $http.put('/characters/' + agent._id, agent).then(function(response){
-            console.log("This is response: " + JSON.stringify(response));
-        },function(response){
-            console.log('no response given');
-        });
-    }
-
-    vm.submit = function(agent){ //function to call on form submit
-        if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
-            vm.upload(vm.file); //call upload function
-        }
-    }
-
-    vm.upload = function (file) {
-        Upload.upload({
-            url: 'http://localhost:3000/upload', //webAPI exposed to upload the file
-            data:{file:file} //pass file as data, should be user ng-model
-        }).then(function (resp) { //upload function returns a promise
-            if(resp.data.error_code === 0){ //validate success
-                $window.alert('Success ' + JSON.stringify(resp.data.modname) + ' uploaded. Response: ');
-                console.log("response was " +JSON.stringify(resp.data));
-                $scope.$parent.agent.image = resp.data.modname;
-                $scope.updateAgent($scope.$parent.agent);
-                $location.path('/dashboard/editagent/' +$scope.$parent.agent._id);
-                // console.log("Parent, Parnet is " +$scope.$parent.$parent.image);
-            } else {
-                $window.alert('an error occured');
-            }
-        }, function (resp) { //catch error
-            console.log('Error status: ' + resp.status);
-            $window.alert('Error status: ' + resp.status);
-        }, function (evt) {
-            console.log(evt);
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
-        });
-    };
-
-    $http({
-        url: "/agent/" + $stateParams.id,
-        method: "GET",
-        params: { id: $stateParams.id }
-    }).then(function (response) {
-        $scope.agent = response.data;
-        $scope.$parent.$parent.image = refreshService.setImage($scope.agent.image);
-        $scope.$parent.$parent.tronname = refreshService.setTronText($scope.agent.name);
-    });
-
-    $scope.changeVal = function(row) {
-        $scope.characters.find((o, i) => {
-            if (o.name === row.name) {
-                $scope.characters[i] = { name: o.name, occupation: o.occupation, hp: row.hp, str: row.str, dex: row.dex, con: row.con, image: row.image };
-                return true;    
-            }
-        });
-        $scope.updateAgent(row);
-    }
-
-    $scope.addBond = function() {
-        var keys = Object.keys($scope.agent.bnd);
-        numBonds = keys.length + 1;
-        console.log("agentBonds is" + JSON.stringify($scope.agent.bnd));
-        var newBondName = "bond" + numBonds;
-        $scope.agent.bnd[newBondName] = {name: "test", score: 0 };
-        // var divElement = angular.element(document.querySelector('.bndList'));
-        // var bndInputs = '<div class="row"><div class="col-sm-10"><input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.bond' + numBonds + '.name" ng-change="changeVal(agent)"></div><div class="col-sm-2"><input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.bnd.bond' + numBonds +  '.score"></div></div>';
-        // var htmlElement = angular.element(bndInputs);
-        // divElement.append(htmlElement);
-        // $compile(divElement)($scope);
-        // alert("Num Bonds " +numBonds);
-    }
-
-    // $scope.uploadFile = function() {               
-    //     var file = $scope.myFile;
-    //     console.log('file is ' + file);
-    //     console.dir(file);
-    //     var uploadUrl = "/img/";
-    //     fileUpload.uploadFileToUrl(file, uploadUrl);
-    //  };
-});
 
 app.controller('dashCtrl', function($scope, $http, $stateParams, characterService, refreshService) {
     var vm = this;
