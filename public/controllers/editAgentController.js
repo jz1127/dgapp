@@ -55,6 +55,19 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
         $scope.$parent.$parent.tronname = refreshService.setTronText($scope.agent.name);
     });
 
+    if ($stateParams.mode === 'editwep') {
+        $http({
+            url: "/weapons",
+            method: "GET",
+        }).then(function (response) {
+            $scope.weapons = response.data;
+            // alert($scope.weapons);
+        }, function(response) {
+            console.log('no response given');
+        });
+    }
+
+
     $scope.changeVal = function(row) {
         $scope.characters.find((o, i) => {
             if (o.name === row.name) {

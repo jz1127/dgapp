@@ -75,13 +75,7 @@ app.post('/upload', function(req, res) {
     })
 });
 
-app.get('/test', function(req, res){
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-});
-
-app.get('/look', function(req, res) { 
-    res.send("Hello World!"); 
-});
+// Character APIs need to be changed to Agent APIs
 
 app.get('/characters', function(req, res) {
     // console.log('I got a get request');
@@ -99,13 +93,6 @@ app.post('/characters', function(req, res) {
     }) 
 });
 
-app.post('/weapons', function(req, res) {
-    console.log(JSON.stringify(req.body));
-    db.weapons.insert(req.body, function(err, doc) {
-        res.json(doc);
-    }) 
-});
-
 app.delete('/characters/:id', function(req, res) {
     var id = req.params.id;
     console.log("from server the id is: " + id);
@@ -116,7 +103,7 @@ app.delete('/characters/:id', function(req, res) {
 
 app.put('/characters/:id', function(req, res){
     var id = req.params.id;
-    console.log("Request body was: " + JSON.stringify(req.body));
+    // console.log("Request body was: " + JSON.stringify(req.body));
 
     const newBody = Object.keys(req.body).reduce((object, key) => {        
         if (key != "_id") {
@@ -126,15 +113,12 @@ app.put('/characters/:id', function(req, res){
       }, {});
 
     for (const key in newBody) {
-        console.log(newBody[key]);
+        // console.log(newBody[key]);
         if (null == newBody[key] || "" == newBody[key]) {
             // console.log("Yes it is " + key);
             delete newBody[key];
         }
     }
-
-    console.log("newBody: " + JSON.stringify(newBody));
-
 
     db.characters.findAndModify({query: {_id: mongojs.ObjectId(id)},
     update: {$set: newBody}, 
@@ -154,6 +138,62 @@ app.put('/characters/:id', function(req, res){
             res.json(doc);
         });
     });
+
+    // WEAPONS APIS
+    app.get('/weapons', function(req, res) {
+        console.log('Weapons got a get request');
+    
+        db.weapons.find(function (err, docs) {
+            // console.log("From weapons get " + docs);
+            res.json(docs.sort(sortByProperty('name')));
+        }, [{timestamp: mongojs.ObjectId().getTimestamp()}]);
+    });
+    
+    app.post('/weapons', function(req, res) {
+        console.log(JSON.stringify(req.body));
+        db.weapons.insert(req.body, function(err, doc) {
+            res.json(doc);
+        }) 
+    });
+
+    app.put('/weapons/:id', function(req, res){
+        var id = req.params.id;
+        console.log("Request body was: " + JSON.stringify(req.body));
+    
+        const newBody = Object.keys(req.body).reduce((object, key) => {        
+            if (key != "_id") {
+              object[key] = req.body[key];
+            }
+            return object
+          }, {});
+    
+        for (const key in newBody) {
+            console.log(newBody[key]);
+            if (null == newBody[key] || "" == newBody[key]) {
+                // console.log("Yes it is " + key);
+                delete newBody[key];
+            }
+        }
+    
+        console.log("newBody: " + JSON.stringify(newBody));
+    
+    
+        db.weapons.findAndModify({query: {_id: mongojs.ObjectId(id)},
+        update: {$set: newBody}, 
+            new: true}, function (err, doc) {
+                res.json(doc);
+            });
+        });
+
+        // Testing API's and Misc
+        app.get('/test', function(req, res){
+            res.sendFile(path.join(__dirname + '/public/index.html'));
+        });
+        
+        app.get('/look', function(req, res) { 
+            res.send("Hello World!"); 
+        });
+
 
 app.listen(3000);
 console.log("Server is running on port 3000.");

@@ -94,6 +94,14 @@ app.config([
         controller: 'editAgentController'
       }
 
+      var editagentwepState = {
+        name: 'dashboard.editagentwep',
+        url: '/editagentwep/:id/:mode',
+        // parent: 'dashboard',
+        templateUrl: '/partials/editagentwep.html',
+        controller: 'editAgentController'
+      }
+
 
     var adminState = {
         name: 'admin',
@@ -122,6 +130,7 @@ app.config([
     $stateProvider.state(addweaponsState);
     $stateProvider.state(editinjuriesState);
     $stateProvider.state(editarmorState);
+    $stateProvider.state(editagentwepState);
     $stateProvider.state(adminState);
 
 
