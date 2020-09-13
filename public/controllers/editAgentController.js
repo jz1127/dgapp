@@ -67,8 +67,18 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
         });
     }
 
-
+    $scope.getWeaponSelected = function(myWep) {
+        alert(wep);
+    }
+ 
     $scope.changeVal = function(row) {
+        alert(JSON.stringify(row));
+        alert(typeof(row._id));
+        var test = $scope.weapons.find(x => x._id == "5f5901f61eb68f786c161861");
+        alert(JSON.stringify(test));
+
+        // alert(JSON.stringify(row));
+        //if weapon find weapon by name and get its information to pass to the update agent function.
         $scope.characters.find((o, i) => {
             if (o.name === row.name) {
                 $scope.characters[i] = { name: o.name, occupation: o.occupation, hp: row.hp, str: row.str, dex: row.dex, con: row.con, image: row.image };

@@ -102,7 +102,6 @@ app.config([
         controller: 'editAgentController'
       }
 
-
     var adminState = {
         name: 'admin',
         url: '/admin',
@@ -166,7 +165,17 @@ app.factory('refreshService', ['characterService', function(characterService) {
 }]);  
 
 
+app.controller('navigationCtrl', function($scope, $stateParams, $state){
+    
+});
 
+
+app.directive('editSimpleNavbar', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/editnavigation.html'
+    };
+});
 
 app.controller('dashCtrl', function($scope, $http, $stateParams, characterService, refreshService) {
     var vm = this;

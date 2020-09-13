@@ -1,19 +1,4 @@
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body" style="font-size: 40px; text-align: center;">
-                <a ui-sref="dashboard.viewagents" ui-sref-active="active"><i class="fas fa-home"></i></a>
-                <a ui-sref="dashboard.editagent({id: agent._id})"><i class="fas fa-user"></i></a>
-                <a ui-sref="dashboard.editstats({id: agent._id})"><i class="fas fa-heartbeat"></i></i></a>
-                <a ui-sref="dashboard.editpsych({id: agent._id})"><i class="fas fa-shapes"></i></a>
-                <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
-                <a ui-sref="dashboard.editinjuries({id: agent._id})"><i class="fas fa-file-medical"></i></a>
-                <a ui-sref="dashboard.editarmor({id: agent._id})"><i class="fas fa-shield-alt active"></i></a>
-                <!-- <a ui-sref="dashboard.editinventory({id: agent._id})"><i class="fas fa-truck-moving"></i></a> -->
-            </div>
-        </div>
-    </div>
-</div>
+<edit-simple-navbar></edit-simple-navbar>
 
 <div class="row">
     <div class="col">
@@ -23,7 +8,8 @@
                     <div class="row">
                         <div class="col sectionTitle">
                             <h2>Weapons</h2>
-                            Weapons are as follows: {{ weapons }}
+                            Weapons are as follows: {{ weapons[0] }}
+                            <div ng-repeat="x in weapons">{{x.name}}</div>
                         </div>
                     </div>
                     <div class="row">
@@ -46,28 +32,49 @@
                             Treated?: <input type="checkbox" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="agent.injuries.injury.treated" ng-change="changeVal(agent)">
                         </div>
                     </div>                         -->
-
-                    <div class="armorList">
-                        <div class="row" ng-repeat="item in agent.armor">
-                            <div class="col-sm-2">
-                                <select name="itemtype" class="form-control" ng-model="item.category" aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
-                                    <option value="armor">Armor</option>
-                                    <option value="gear">Gear</option>
-                                </select>
-                                <!-- <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.category" ng-change="changeVal(agent)"> -->
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.name" ng-change="changeVal(agent)">
-                            </div>
-                            <div class="col-sm-2" ng-if="item.category == 'armor'">
-                                <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control inline"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.armor_rating" ng-change="changeVal(agent)">
-                            </div>
-                        </div>                        
+                    <div class="row">
+                        <!-- <div class="col">
+                            <select name="weaponname" class="form-control" ng-model="agent.weapons" ng-options="wep.name for wep in weapons" aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
+                                <option ng-repeat="wep in weapons" disabled>--Select Weapon---</option>
+                            </select>
+                        </div> -->
+                        <!-- <div class="col">
+                            <select name="weaponrange" class="form-control" ng-model="agent.weapons.weapon.base_range" ng-options="wep.base_range for wep in weapons" aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
+                                <option ng-repeat="wep in weapons" disabled>--Select Weapon---</option>
+                            </select>
+                        </div> -->
                     </div>
+                   <div class="row">
+                       <div class="col">
+                        <div class="weaponList">
+                            <div class="row" ng-repeat="weapon in agent.weapons">
+                                <div class="col-sm-2">
+                                    <select name="weaponname" class="form-control" ng-model="chosenwepname"  aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
+                                        <option ng-repeat="wep in weapons" ng-click="weapon.base_range = wep.base_range;" value="{{wep.base_range}}">{{wep.name}}</option>
+                                    </select>
+                                    <!-- <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range" ng-change="changeVal(agent)"> -->
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.name" ng-change="changeVal(agent)">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range" ng-change="changeVal(agent)">
+                                </div>
+                                <!-- <div class="col-sm-8">
+                                    <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.description" ng-change="changeVal(agent)">
+                                </div> -->
+                                <!-- <div class="col-sm-2" ng-if="weapon.category == 'armor'">
+                                    <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control inline"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.armor_rating" ng-change="changeVal(agent)">
+                                </div> -->
+                            </div>                        
+                        </div>
+                       </div>
+                   </div>
+                    
 
                     <div class="row">
                         <div class="col">
-                            <button ng-click='addRow("armor", "item")' class="btn btn-warning" type="button" id="button-addon1">Add Armor/Gear</button>
+                            <button ng-click='addRow("weapons", "weapon")' class="btn btn-warning" type="button" id="button-addon1">Add Weapon</button>
                         </div>
                     </div>
 
