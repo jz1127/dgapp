@@ -9,7 +9,7 @@
                 <a ui-sref="dashboard.editskills({id: agent._id})"><i class="fas fa-cogs"></i></a>
                 <a ui-sref="dashboard.editinjuries({id: agent._id})"><i class="fas fa-file-medical active"></i></a>
                 <a ui-sref="dashboard.editarmor({id: agent._id})"><i class="fas fa-shield-alt"></i></a>
-                <a ui-sref="" ng-click="isActive()"><i class="fas fa-truck-moving"></i></a>
+                <a ui-sref="dashboard.editagentwep({id: agent._id, mode: editwep})" ng-click="dashboard.isActive()"><i class="fas fa-truck-moving"></i></a>
             </div>
         </div>
     </div>

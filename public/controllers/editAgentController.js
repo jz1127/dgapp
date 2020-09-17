@@ -3,6 +3,11 @@ var app = angular.module('dgApp');
 app.controller('editAgentController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window, $location) {
     var vm = this;
 
+    $scope.getWeapon = function(wep) {
+        d =  JSON.parse(wep);
+        return {name: d.name, base_range: d.base_range}
+    }
+
     $scope.updateAgent = function(agent) {
         // console.log(agent);
         console.log("The agent was: " + JSON.stringify(agent));
@@ -72,10 +77,10 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
     }
  
     $scope.changeVal = function(row) {
-        alert(JSON.stringify(row));
-        alert(typeof(row._id));
-        var test = $scope.weapons.find(x => x._id == "5f5901f61eb68f786c161861");
-        alert(JSON.stringify(test));
+        // alert(JSON.stringify(row));
+        // alert(typeof(row._id));
+        // var test = $scope.weapons.find(x => x._id == "5f5901f61eb68f786c161861");
+        // alert(JSON.stringify(test));
 
         // alert(JSON.stringify(row));
         //if weapon find weapon by name and get its information to pass to the update agent function.
@@ -101,9 +106,10 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
             $scope.agent[obj] = {};
         }
         var keys = Object.keys($scope.agent[obj]);
-        numKeys = keys.length + 1;
+        var now = new Date();
+        // numKeys = keys.length + 1;
         // alert(keyName);
-        var newKeyName = String(keyName) + String(numKeys);
+        var newKeyName = String(keyName) + "_" + String(now.getTime());
         // alert("The key is: " +newKeyName);
         $scope.agent[obj][newKeyName] = {};
         }

@@ -14,13 +14,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-2">
-                            Category
+                            Weapon Name
                         </div>
-                        <div class="col-sm-8">
-                            Description
+                        <div class="col-sm-4">
+                            Base Range
                         </div>
-                        <div class="col-sm-2">
-                            Armor Rating?
+                        <div class="col-sm-4">
+                            Skill
                         </div>
                     </div>
 
@@ -49,8 +49,8 @@
                         <div class="weaponList">
                             <div class="row" ng-repeat="weapon in agent.weapons">
                                 <div class="col-sm-2">
-                                    <select name="weaponname" class="form-control" ng-model="chosenwepname"  aria-label="Default" aria-describedby="input-sizing-default" ng-change="changeVal(agent)">
-                                        <option ng-repeat="wep in weapons" ng-click="weapon.base_range = wep.base_range;" value="{{wep.base_range}}">{{wep.name}}</option>
+                                    <select name="weaponname" class="form-control" ng-model="chosenwepname"  aria-label="Default" aria-describedby="input-sizing-default" ng-change="weapon.name = getWeapon(chosenwepname).name; weapon.base_range = getWeapon(chosenwepname).base_range; changeVal(agent);">
+                                        <option ng-repeat="wep in weapons" value="{{wep}}">{{wep.name}}</option>
                                     </select>
                                     <!-- <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range" ng-change="changeVal(agent)"> -->
                                 </div>
