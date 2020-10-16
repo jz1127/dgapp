@@ -99,7 +99,8 @@ app.config([
         url: '/editagentwep/:id/:mode',
         // parent: 'dashboard',
         templateUrl: '/partials/editagentwep.html',
-        controller: 'editAgentController'
+        controller: 'editAgentController',
+        controllerAs: 'vm'
       }
 
     var adminState = {

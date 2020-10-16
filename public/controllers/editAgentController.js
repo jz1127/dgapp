@@ -1,8 +1,11 @@
 var app = angular.module('dgApp');
 
-app.controller('editAgentController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window, $location) {
+app.controller('editAgentController', function($scope, $http, $stateParams, characterService, refreshService, Upload, $window, $location, weaponsSvc, $state) {
     var vm = this;
-
+    weaponsSvc.getWeapons().then(response => {
+        this.weapons = response.data;
+    });
+    
     $scope.getWeapon = function(wep) {
         d =  JSON.parse(wep);
         return {name: d.name, base_range: d.base_range}
@@ -60,21 +63,17 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
         $scope.$parent.$parent.tronname = refreshService.setTronText($scope.agent.name);
     });
 
-    if ($stateParams.mode === 'editwep') {
-        $http({
-            url: "/weapons",
-            method: "GET",
-        }).then(function (response) {
-            $scope.weapons = response.data;
-            // alert($scope.weapons);
-        }, function(response) {
-            console.log('no response given');
-        });
-    }
-
-    $scope.getWeaponSelected = function(myWep) {
-        alert(wep);
-    }
+    // if ($stateParams.mode === 'editwep') {
+    //     $http({
+    //         url: "/weapons",
+    //         method: "GET",
+    //     }).then(function (response) {
+    //         $scope.weapons = response.data;
+    //         // alert($scope.weapons);
+    //     }, function(response) {
+    //         console.log('no response given');
+    //     });
+    // }
  
     $scope.changeVal = function(row) {
         // alert(JSON.stringify(row));
@@ -111,15 +110,33 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
         // alert(keyName);
         var newKeyName = String(keyName) + "_" + String(now.getTime());
         // alert("The key is: " +newKeyName);
-        $scope.agent[obj][newKeyName] = {};
+        $scope.agent[obj][newKeyName] = {"_id": newKeyName};
         }
-    
 
-    // $scope.uploadFile = function() {               
-    //     var file = $scope.myFile;
-    //     console.log('file is ' + file);
-    //     console.dir(file);
-    //     var uploadUrl = "/img/";
-    //     fileUpload.uploadFileToUrl(file, uploadUrl);
-    //  };
+    $scope.deletit = function(obj, weapon, wepid, agentid) {
+        console.log("obj " + obj);
+        console.log("wepid " + wepid);
+        console.log("agentid " + agentid);
+        console.log("weapon" + JSON.stringify(weapon));
+        $http.delete('/characterssub/' + agentid + '/' + wepid).then(function(response){
+            console.log("This is response: " + JSON.stringify(response));
+            // refresh();
+        },function(response){
+            console.log('no response given');
+        });
+        $state.reload();
+    }
+
+    $scope.setAgentWeapon = function(){
+        // $scope.agent[agentid]['weapons'][weaponObj.name]['name'] = 'test';
+        alert('Hello');
+        $scope.weapon.name = "Hello";
+        // console.log(agentId);
+        // console.log(weaponObj);
+    }
+    $scope.callback = function(newval){
+        // alert(JSON.parse(newval).base_range);
+        $scope.value = JSON.parse(newval).base_range;
+      }
+
 });

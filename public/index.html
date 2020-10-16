@@ -22,7 +22,7 @@
     .active { color: red; font-weight: bolder; }
 </style>
 </head>
-<body ng-app="dgApp" ng-init="hello = 'Hello'; name = 'Delta Green!';" ng-controller="dashCtrl">
+<body ng-app="dgApp" ng-init="hello = 'Hello'; name = 'Delta Green!';" ng-controller="dashCtrl as vm">
     <div class="container-fluid">
         <!-- Jumbotron -->
         <div class="jumbotron text-center">
@@ -76,6 +76,8 @@
     <script src="controllers/services.js"></script>
     <script src="controllers/editAgentController.js"></script>
     <script src="controllers/weapons.js"></script>
+    <script src="components/weapon-select.component.js"></script>
+    <script src="services/weapons.service.js"></script>
     <!-- <script> 
             $( 'a.nav' ).on('click',  
                         function () { 

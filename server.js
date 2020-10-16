@@ -101,6 +101,34 @@ app.delete('/characters/:id', function(req, res) {
     });
 });
 
+app.delete('/characterssub/:id/:wepid', function(req, res) {
+    var id = req.params.id;
+    var wepid = req.params.wepid;
+    console.log("from server the agent id is: " + id);
+    console.log("from server the wepid is: " + wepid);
+    var key_var = "weapons." + wepid ;
+    db.characters.updateOne({_id: mongojs.ObjectId(id)}, {$unset:{ [key_var] : ""}}, function(err, doc){ res.json(doc)});
+});
+
+app.put('/characterssub/:id/:obj', function(req, res){
+    var id = req.params.id;
+    const $obj = req.params.obj;
+
+    const sub = req.body
+    sub._id = mongojs.ObjectId();
+    // var setit = {weapons: {"_id": mongojs.ObjectId()}};
+    console.log("the obj now is " + JSON.stringify(sub));
+    console.log("nnnnn " +req);
+    // console.log("MY ID IS " + setit);
+
+    db.characters.findAndModify({query: {_id: mongojs.ObjectId(id)},
+    update: {$set: {$obj: {_id: mongojs.ObjectId()}}}, 
+        new: true, upsert: true}, function (err, doc) {
+            res.json(doc);
+        });
+    
+});
+
 app.put('/characters/:id', function(req, res){
     var id = req.params.id;
     // console.log("Request body was: " + JSON.stringify(req.body));
@@ -118,6 +146,11 @@ app.put('/characters/:id', function(req, res){
             // console.log("Yes it is " + key);
             delete newBody[key];
         }
+    }
+
+    console.log("BODY is " +JSON.stringify(newBody.weapons));
+    if ('tempid' in newBody.weapons) {
+        
     }
 
     db.characters.findAndModify({query: {_id: mongojs.ObjectId(id)},
