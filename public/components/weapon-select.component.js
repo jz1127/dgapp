@@ -18,9 +18,10 @@ function WeaponSelectController(weaponsSvc) {
 angular.module('dgApp').component('weaponSelect', {
     templateUrl: 'components/weapon-select.html',
     controller: WeaponSelectController,
-    controllerAs: 'wpctrl',
+    // controllerAs: 'wpctrl',
     bindings: {
-        value: '<',
-        callback: '<'
+        selwep: '<',
+        setselect: '<',
+        weapon: '<'
     }
 });

@@ -127,16 +127,24 @@ app.controller('editAgentController', function($scope, $http, $stateParams, char
         $state.reload();
     }
 
-    $scope.setAgentWeapon = function(){
-        // $scope.agent[agentid]['weapons'][weaponObj.name]['name'] = 'test';
-        alert('Hello');
-        $scope.weapon.name = "Hello";
-        // console.log(agentId);
-        // console.log(weaponObj);
-    }
-    $scope.callback = function(newval){
-        // alert(JSON.parse(newval).base_range);
-        $scope.value = JSON.parse(newval).base_range;
+    $scope.setSelect = function($modelName, modelData, selection){
+        $scope.$modelName = JSON.parse(modelData);
+        // console.log("sksdf " +$scope.agent.weaponsweapons[selection._id]);
+        // $scope.agent.weaponsweapons[selection._id].forEach(element => {
+        //     if (element != "_id") {
+        //     console.log("ThisElement " +element);
+        // }
+        // });
+
+        //OVereriting IDS !!!! FIX SO THAT IT DOESNT CHANGE THE ID LOOP
+        $scope.agent.weapons[selection._id].name = $scope.$modelName.name;
+        $scope.changeVal($scope.agent);
+
+
+        // $scope.result = angular.equals($scope.agent.weapons[selection._id], $scope.$modelName);
+        // console.log("Resultis " +$scope.result)
+        // console.log("Weeapo is " +JSON.stringify(weapo));
+        // console.log("THIS ISIT " +$scope.agent.weapons[weapo._id].name);
       }
 
 });

@@ -1,12 +1,3 @@
-<!-- {{ mm.agentId }} {{  mm.weaponObj  }}
-<select name="mm.agentId" class="form-control" ng-model="mm.chosenwepname"  aria-label="Default" aria-describedby="input-sizing-default" ng-change="vm.setAgentWeapon()">
-    <option ng-repeat="wep in mm.weapons" value="{{wep}}">{{wep.name}}</option>
-</select> -->
-<!-- <button ng-click="vm.out = vm.out + 1">buy one</button>
-<button ng-click="vm.out = vm.out + 6">buy many</button> -->
-<!-- inner: <input ng-model="vm.connection"> -->
-
-<!-- <input ng-model="mm.value" ng-change="mm.callback(mm.value)"> -->
-<select ng-model="value" ng-change="wpctrl.callback(value)">
-    <option ng-repeat="wep in wpctrl.weapons" value="{{wep}}">{{wep.name}}</option>
+<select ng-model="selwep" ng-change="$ctrl.setselect('selwep', selwep, $ctrl.weapon)">
+    <option ng-repeat="wep in $ctrl.weapons" value="{{wep}}">{{wep.name}}</option>
 </select>
