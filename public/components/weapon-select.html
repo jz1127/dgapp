@@ -1,3 +1,4 @@
-<select ng-model="selwep" ng-change="$ctrl.setselect('selwep', selwep, $ctrl.weapon)">
+<select class="form-control" ng-model="selwep" ng-init="$ctrl.weapon.name" ng-change="$ctrl.setselect('selwep', selwep, $ctrl.weapon)">
+    <option value="" disabled selected>{{ $ctrl.weapon.name }}</option>
     <option ng-repeat="wep in $ctrl.weapons" value="{{wep}}">{{wep.name}}</option>
 </select>

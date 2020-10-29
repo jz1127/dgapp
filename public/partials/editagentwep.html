@@ -14,13 +14,25 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-2">
-                            Weapon Name
+                            Weapon
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
+                            Category
+                        </div>
+                        <div class="col-sm-2">
+                            Skill
+                        </div>
+                        <div class="col-sm-2">
+                            Description
+                        </div>
+                        <div class="col-sm-1">
+                            Damage
+                        </div>
+                        <div class="col-sm-1">
                             Base Range
                         </div>
-                        <div class="col-sm-4">
-                            Skill
+                        <div class="col-sm-1">
+                            Ammo Capacity
                         </div>
                     </div>
                     <div class="row"> 
@@ -28,24 +40,32 @@
                    <div class="row">
                        <div class="col">
                         <div class="weaponList">
-                            <div class="row" ng-repeat="weapon in agent.weapons">
+                            <div class="row mt-2" ng-repeat="weapon in agent.weapons">
                                 <div class="col-sm-2">
                                     <weapon-select setselect="setSelect" weapon="weapon"></weapon-select>
                                     <!-- <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range" ng-change="changeVal(agent)"> -->
                                 </div>
-                                <div class="col-sm-4">
-                                    <!-- <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.name" ng-change="changeVal(agent)"> -->
-                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range">
-                                </div>
-                                <!-- <div class="col-sm-4">
-                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="value.skill" ng-change="changeVal(agent)">
-                                </div> -->
                                 <div class="col-sm-2">
-                                    <input type="button" ng-click="deletit('weapons', weapon, weapon._id, agent._id)" value="delete">
+                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.category">
                                 </div>
-                                <!-- <div class="col-sm-8">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.skill">
+                                </div>
+                                <div class="col-sm-2">
                                     <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.description" ng-change="changeVal(agent)">
-                                </div> -->
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.damage">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.base_range">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="textarea" class="form-control"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="weapon.ammo_capacity">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="button" class="btn btn-danger" ng-click="deletit('weapons', weapon, weapon._id, agent._id)" value="delete">
+                                </div>
                                 <!-- <div class="col-sm-2" ng-if="weapon.category == 'armor'">
                                     <input type="text" ng-keydown="($event.keyCode === 13) && changeVal(agent)" class="form-control inline"  aria-label="Default" aria-describedby="input-sizing-default" ng-model="item.armor_rating" ng-change="changeVal(agent)">
                                 </div> -->
@@ -55,7 +75,7 @@
                    </div>
                     
 
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col">
                             <button ng-click='addRow("weapons", "weapon")' class="btn btn-warning" type="button" id="button-addon1">Add Weapon</button>
                             <!-- <weapon-select></weapon-select> -->
